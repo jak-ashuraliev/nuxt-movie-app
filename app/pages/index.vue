@@ -1,45 +1,116 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">movie-app</h1>
-    </div>
-  </div>
+  <!-- Jumbotron -->
+  <b-jumbotron
+    class="rounded-0 text-light text-center d-flex justify-content-center align-items-center"
+  >
+    <!-- bg image overlay div  -->
+    <div class="img-overlay"></div>
+    <b-container class="p-0">
+      <h1 class="display-3">{{ title }}</h1>
+      <p class="lead">{{ subtitle }}</p>
+      <b-alert
+        :show="dismissCountDown"
+        dismissible
+        variant="danger"
+        @dismissed="dismissCountDown = 0"
+        @dismiss-count-down="countDownChanged"
+        class="mb-3"
+      >
+        <b-container class="justify-content-md-center">
+          <!-- <b-col md="8"> -->
+          {{ message }}
+          <b-progress
+            variant="danger"
+            :max="dismissSecs"
+            :value="dismissCountDown"
+          ></b-progress>
+          <!-- </b-col> -->
+        </b-container>
+      </b-alert>
+      <!-- v-if show danger button  -->
+      <b-button
+        v-if="showBtn"
+        @click="showAlert"
+        variant="danger"
+        size="lg"
+        class="m-1"
+        >Show Message</b-button
+      >
+      <!-- v-else show primary button -->
+      <b-button v-else variant="primary" size="lg" class="m-1"
+        >Now Playing</b-button
+      >
+    </b-container>
+  </b-jumbotron>
+  <!-- Jumbotron End  -->
 </template>
 
+<!-- All content is from variables in the <script> section of the .vue file. -->
 <script>
-export default {};
+export default {
+  data: () => {
+    return {
+      title: "MOVIE APP",
+      subtitle:
+        "This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.",
+      message:
+        "Our website is currently undergoing scheduled maintenance. Thank you for your patience!",
+      dismissSecs: 6,
+      dismissCountDown: 0,
+      showBtn: true
+    };
+  },
+  methods: {
+    countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown;
+    },
+    showAlert() {
+      this.dismissCountDown = this.dismissSecs;
+    }
+  }
+};
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
+<!--Styling with scss -->
+<style scoped lang="scss">
+$yellow: #ffb617;
+
+.lead {
+  max-width: 50%;
+  margin: 0 auto 1rem;
+}
+.alert-danger {
+  width: 75%;
+  margin: auto;
+  .progress {
+    height: 0.25rem;
+    margin-top: 0.5rem;
+  }
+}
+
+// Jumbotron & Background Img
+.jumbotron {
+  // margin-top: 3.5rem;
+  margin-bottom: 0 !important;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1503726876301-67e54d319b60?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1443&q=80");
+  background-size: cover;
+  background-position: left;
+  background-repeat: no-repeat;
+
+  // Main heading
+  h1 {
+    font-weight: 700;
+  }
 }
 
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+// Tooltip bg color override
+.tooltip-inner {
+  background-color: $yellow !important;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+.tooltip.bs-tooltip-right .arrow:before {
+  border-right-color: $yellow !important;
 }
 </style>
