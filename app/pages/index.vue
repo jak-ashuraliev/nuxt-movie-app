@@ -52,7 +52,7 @@ export default {
     return {
       title: "MOVIE APP",
       subtitle:
-        "This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.",
+        "Millions of movies, TV shows and people to discover. Explore now.",
       message:
         "Our website is currently undergoing scheduled maintenance. Thank you for your patience!",
       dismissSecs: 6,

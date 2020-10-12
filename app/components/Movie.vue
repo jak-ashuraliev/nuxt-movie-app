@@ -1,30 +1,20 @@
 <template>
-  <b-col xs="12" md="6" lg="4">
-    <b-card-group>
-      <b-card
-        deck
-        :title="this.title"
-        img-top
-        tag="article"
-        class="mb-4"
-      >
-        <b-card-text>{{ this.title }}</b-card-text>
-        <!-- <b-button href="#" variant="primary">{{ imgList.btn_text }}</b-button> -->
-        <template>
-          <small class="text-muted">{{ this.title }}</small>
-        </template>
-      </b-card>
-      
-    </b-card-group>
+  <b-col xs="12" md="6" lg="4" >
+    <div>
+    <p>{{this.title}}</p>
+    <img class="poster-size" :src="poster" :alt="this.alt" />
+    <p>{{this.vote_average}}</p>
+    </div>
   </b-col>
 </template>
 
 <!-- Receiving props / object to be used in the template above -->
 <script>
+const baseURL = "http://image.tmdb.org/t/p/w342/";
 export default {
   name: "Movie",
   // props and validation
-  props: ["title", "poster"]
+  props: ["title", "vote_average", "poster", "alt"]
   
   // {
   //   imgList: {
@@ -75,5 +65,8 @@ export default {
 // on click / toggle event, add border to the card
 .active {
   border: 2px solid #777;
+}
+.poster-size {
+  width: 100%;
 }
 </style>
