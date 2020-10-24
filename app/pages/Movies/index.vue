@@ -8,6 +8,7 @@
       <Movie
         v-for="movie in movies"
         :key="movie.id"
+        :id="movie.id"
         :poster="'http://image.tmdb.org/t/p/w342/' + movie.poster_path"
         :alt="movie.title"
       />
@@ -23,6 +24,7 @@
 import axios from "axios"
 import Movie from "../../components/Movie";
 
+// API KEY and API URL 
 const API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed";
 const API_URL = "https://api.themoviedb.org/3/movie/popular?api_key=";
 
@@ -36,12 +38,15 @@ export default {
       movies: []
     };
   },
+  // implement a lifecycle hook that depends on async operations
   async created() {
     const config = {
       headers: {
         Accept: "application/json"
       }
     };
+    // making GET request and using Async/Await with Axios
+    // use error handing in axios using try / catch
     try {
       const res = await axios.get(API_URL + API_KEY, config);
       this.movies = res.data.results;

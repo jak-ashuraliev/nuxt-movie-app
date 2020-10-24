@@ -8,38 +8,8 @@
     <b-container class="p-0">
       <h1 class="display-3">{{ title }}</h1>
       <p class="lead">{{ subtitle }}</p>
-      <b-alert
-        :show="dismissCountDown"
-        dismissible
-        variant="danger"
-        @dismissed="dismissCountDown = 0"
-        @dismiss-count-down="countDownChanged"
-        class="mb-3"
-      >
-        <b-container class="justify-content-md-center">
-          <!-- <b-col md="8"> -->
-          {{ message }}
-          <b-progress
-            variant="danger"
-            :max="dismissSecs"
-            :value="dismissCountDown"
-          ></b-progress>
-          <!-- </b-col> -->
-        </b-container>
-      </b-alert>
-      <!-- v-if show danger button  -->
-      <b-button
-        v-if="showBtn"
-        @click="showAlert"
-        variant="danger"
-        size="lg"
-        class="m-1"
-        >Show Message</b-button
-      >
-      <!-- v-else show primary button -->
-      <b-button v-else variant="primary" size="lg" class="m-1"
-        >Now Playing</b-button
-      >
+      <nuxt-link to="/movies"><b-button variant="primary" size="lg" class="m-1"
+        >Now Playing</b-button></nuxt-link>
     </b-container>
   </b-jumbotron>
   <!-- Jumbotron End  -->

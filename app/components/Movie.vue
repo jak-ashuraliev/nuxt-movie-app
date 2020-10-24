@@ -1,10 +1,11 @@
 <template>
   <b-col xs="12" md="6" lg="4" >
-    <div>
-    <p>{{this.title}}</p>
-    <img class="poster-size" :src="poster" :alt="this.alt" />
-    <p>{{this.vote_average}}</p>
-    </div>
+    <!-- wrap each poster with nuxt-link and route to another page by ID -->
+    <nuxt-link :to="'movies/' + id">
+      <div>
+        <img class="poster-size mb-4 img" :src="poster" :alt="this.alt" />
+      </div>
+    </nuxt-link>
   </b-col>
 </template>
 
@@ -14,50 +15,26 @@ const baseURL = "http://image.tmdb.org/t/p/w342/";
 export default {
   name: "Movie",
   // props and validation
-  props: ["title", "vote_average", "poster", "alt"]
-  
-  // {
-  //   imgList: {
-  //     type: Object,
-  //     requred: true
-  //   },
-  //   title: {
-  //     type: String,
-  //     required: true,
-  //     default: "Default Title"
-  //   },
-  //   text: {
-  //     type: String,
-  //     required: true,
-  //     default: "Some default text"
-  //   },
-  //   btn_text: {
-  //     type: String,
-  //     default: "Disabled"
-  //   },
-  //   ulr: {
-  //     type: String
-  //   },
-  //   alt: {
-  //     type: String,
-  //     required: true,
-  //     default: "Description of the image"
-  //   },
-  //   last_update: {
-  //     type: String,
-  //     required: true,
-  //     default: "Last updated time unknown."
-  //   }
-  // }
+  props: {
+    id: {
+      type: Number,
+      required: true,
+      default: undefined
+    },  
+    poster: {
+      type: String,
+      default: undefined
+    }, 
+    alt: {
+      type: String,
+      required: true,
+      default: undefined
+    }
+  }
 };
 </script>
 
 <style lang="scss">
-.movie {
-  padding: 1rem;
-  border: 1px solid #eee;
-  margin: 1rem 0;
-}
 // set bootstarp border to 2px.
 .card {
   border: 2px solid rgba(0, 0, 0, 0.125);
@@ -68,5 +45,16 @@ export default {
 }
 .poster-size {
   width: 100%;
+}
+.img {
+  transform: scale(1);
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transition: transform 350ms ease-in-out;
+&:hover {
+  transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+}
 }
 </style>
