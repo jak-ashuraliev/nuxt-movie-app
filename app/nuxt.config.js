@@ -1,6 +1,9 @@
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
+    generate: {
+      fallback: true
+    },
     title: 'movie-app',
     meta: [
       { charset: 'utf-8' },
