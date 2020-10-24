@@ -6,8 +6,8 @@
     <b-row class="mt-4 justify-content-md-center">
       <b-col></b-col>
       <b-col cols="8" >
-          <ContactForm/>
-        </b-col>
+        <ContactForm/>
+      </b-col>
       <b-col></b-col>
     </b-row>
   </b-container>
