@@ -33,6 +33,19 @@ export default {
       movie_detail: {}
     }
   },
+  head() {
+      return {
+        title: this.section_title,
+        meta: [
+          // set the HTML Head tags for the current page for SEO
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'A detail description of the seclected movie.'
+          }
+        ]
+      }
+    },
   // implement a lifecycle hook that depends on async operations
   async created() {
     const config = {

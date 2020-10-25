@@ -32,27 +32,40 @@ export default {
   components: { Movie },
   data() {
     return {
-      section_title: "The Movie DB",
+      section_title: "Popular Movies",
       subtitle:
         "Millions of movies, TV shows and people to discover. Explore now.",
       movies: []
     };
   },
-  // implement a lifecycle hook that depends on async operations
-  async created() {
-    const config = {
-      headers: {
-        Accept: "application/json"
+  head() {
+      return {
+        title: this.section_title,
+        meta: [
+          // set the HTML Head tags for the current page for SEO
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'A list of most popular movies and TV shows.'
+          }
+        ]
       }
-    };
-    // making GET request and using Async/Await with Axios
-    // use error handing in axios using try / catch
-    try {
-      const res = await axios.get(API_URL + API_KEY, config);
-      this.movies = res.data.results;
-    } catch (err) {
-      console.log(err)
-    }
+    },
+    // implement a lifecycle hook that depends on async operations
+    async created() {
+      const config = {
+        headers: {
+          Accept: "application/json"
+        }
+      };
+      // making GET request and using Async/Await with Axios
+      // use error handing in axios using try / catch
+      try {
+        const res = await axios.get(API_URL + API_KEY, config);
+        this.movies = res.data.results;
+      } catch (err) {
+        console.log(err)
+      }
   }
 };
 </script>

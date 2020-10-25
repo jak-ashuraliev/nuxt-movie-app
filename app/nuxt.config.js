@@ -4,11 +4,16 @@ export default {
   },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'movie-app',
+    title: 'Nuxt Movie App',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'keywords',
+        name: 'keywords',
+        keywords: 'movie app, nuxt movie web application, movie website, the movie database, popular movies'
+      }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

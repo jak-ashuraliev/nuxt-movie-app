@@ -20,7 +20,7 @@
 export default {
   data: () => {
     return {
-      title: "MOVIE APP",
+      title: "Nuxt Movie App",
       subtitle:
         "Millions of movies, TV shows and people to discover. Explore now.",
       message:
@@ -30,14 +30,27 @@ export default {
       showBtn: true
     };
   },
-  methods: {
-    countDownChanged(dismissCountDown) {
-      this.dismissCountDown = dismissCountDown;
+  head() {
+      return {
+        title: this.title,
+        meta: [
+          // set the HTML Head tags for the current page for SEO
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'Nuxt web application with millions of movies, TV shows and people to discover.'
+          }
+        ]
+      }
     },
-    showAlert() {
-      this.dismissCountDown = this.dismissSecs;
+    methods: {
+      countDownChanged(dismissCountDown) {
+        this.dismissCountDown = dismissCountDown;
+      },
+      showAlert() {
+        this.dismissCountDown = this.dismissSecs;
+      }
     }
-  }
 };
 </script>
 
